@@ -1,7 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
-function Form() {
+const Form = () => {
+  const consultarCep = async () => {
+    const endereco = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
+    console.log(endereco.data);
+    setForm({ ...form, logradouro: endereco.data.logradouro, bairro: endereco.data.bairro, cidade: endereco.data.localidade, estado: endereco.data.uf });
+  };
+
   const createUser = async (user) => {
     const newUser = await axios.post("https://gamaacademy-jobsnet.herokuapp.com/register", form);
   };
@@ -23,10 +29,6 @@ function Form() {
     cidade: "",
     estado: "",
   });
-
-  useEffect(() => {
-    console.log(form);
-  }, [form]);
 
   return (
     <>
@@ -199,6 +201,9 @@ function Form() {
             />
             <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
+          <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => consultarCep()}>
+            Consultar CEP
+          </button>
 
           <div className="col-10">
             <label htmlFor="logradouro" className="form-label">
@@ -287,6 +292,6 @@ function Form() {
       </form>
     </>
   );
-}
+};
 
 export default Form;
