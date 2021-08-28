@@ -57,6 +57,7 @@ const Form = () => {
             </label>
             <input
               type="text"
+              size="11"
               className="form-control"
               onChange={(e) => {
                 setForm({ ...form, cpf: e.target.value });
@@ -251,7 +252,6 @@ const Form = () => {
               }}
               value={form.cidade}
             />
-            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
           <div className="col-md-3">
