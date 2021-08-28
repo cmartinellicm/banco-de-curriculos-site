@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Form = () => {
+  // Buscar CEP via API externa - ViaCEP
   const consultarCep = async () => {
     const endereco = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
     console.log(endereco.data);
@@ -38,7 +39,7 @@ const Form = () => {
 
           <div className="col-12">
             <label htmlFor="nome" className="form-label">
-              Nome Completo *
+              Nome Completo <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -47,13 +48,12 @@ const Form = () => {
                 setForm({ ...form, nome: e.target.value });
               }}
               value={form.nome}
-              required
             />
           </div>
 
           <div className="col-sm-6">
             <label htmlFor="cpf" className="form-label">
-              CPF *
+              CPF <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -62,13 +62,12 @@ const Form = () => {
                 setForm({ ...form, cpf: e.target.value });
               }}
               value={form.cpf}
-              required
             />
           </div>
 
-          <div className="col-12">
+          <div className="col-sm-6">
             <label htmlFor="email" className="form-label">
-              Email
+              Email <span className="obrigatorio">*</span>
             </label>
             <input
               type="email"
@@ -82,7 +81,7 @@ const Form = () => {
 
           <div className="col-12">
             <label htmlFor="cargo" className="form-label">
-              Cargo Pretendido
+              Cargo Pretendido <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -94,9 +93,9 @@ const Form = () => {
             />
           </div>
 
-          <div className="col-sm-6">
+          <div className="col-sm-4">
             <label htmlFor="dataNascimento" className="form-label">
-              Data de Nascimento
+              Data de Nascimento <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -105,13 +104,12 @@ const Form = () => {
                 setForm({ ...form, dataNascimento: e.target.value });
               }}
               value={form.dataNascimento}
-              required
             />
           </div>
 
-          <div className="col-md-6">
+          <div className="col-sm-4">
             <label htmlFor="estadoCivil" className="form-label">
-              Estado Civil
+              Estado Civil <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -120,7 +118,6 @@ const Form = () => {
                 setForm({ ...form, estadoCivil: e.target.value });
               }}
               value={form.estadoCivil}
-              required
             />
             {/* <select className="form-select" id="estadoCivil" required>
               <option value="">Selecionar...</option>
@@ -131,9 +128,9 @@ const Form = () => {
             </select> */}
           </div>
 
-          <div className="col-md-6">
+          <div className="col-sm-4">
             <label htmlFor="sexo" className="form-label">
-              Sexo
+              Sexo <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -142,7 +139,6 @@ const Form = () => {
                 setForm({ ...form, sexo: e.target.value });
               }}
               value={form.sexo}
-              required
             />
             {/* <select className="form-select" id="sexo" required>
               <option value="">Selecionar...</option>
@@ -153,7 +149,7 @@ const Form = () => {
 
           <div className="col-sm-6">
             <label htmlFor="telefone1" className="form-label">
-              Telefone 1
+              Telefone 1 <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -162,9 +158,7 @@ const Form = () => {
                 setForm({ ...form, telefone1: e.target.value });
               }}
               value={form.telefone1}
-              required
             />
-            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
           <div className="col-sm-6">
@@ -179,7 +173,6 @@ const Form = () => {
               }}
               value={form.telefone2}
             />
-            <div className="invalid-feedback">Favor inserir um telefone válido.</div>
           </div>
 
           <hr className="my-4" />
@@ -188,7 +181,7 @@ const Form = () => {
 
           <div className="col-md-3">
             <label htmlFor="cep" className="form-label">
-              CEP
+              CEP <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -197,17 +190,16 @@ const Form = () => {
                 setForm({ ...form, cep: e.target.value });
               }}
               value={form.cep}
-              required
             />
-            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
-          <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => consultarCep()}>
+
+          <button className="w-100 btn btn-outline-secondary" type="button" onClick={() => consultarCep()}>
             Consultar CEP
           </button>
 
           <div className="col-10">
             <label htmlFor="logradouro" className="form-label">
-              Logradouro
+              Logradouro <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -216,14 +208,12 @@ const Form = () => {
                 setForm({ ...form, logradouro: e.target.value });
               }}
               value={form.logradouro}
-              required
             />
-            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
           <div className="col-2">
             <label htmlFor="numero" className="form-label">
-              Número
+              Número <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -232,13 +222,12 @@ const Form = () => {
                 setForm({ ...form, numero: e.target.value });
               }}
               value={form.numero}
-              required
             />
           </div>
 
           <div className="col-md-5">
             <label htmlFor="bairro" className="form-label">
-              Bairro
+              Bairro <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -247,13 +236,12 @@ const Form = () => {
                 setForm({ ...form, bairro: e.target.value });
               }}
               value={form.bairro}
-              required
             />
           </div>
 
           <div className="col-md-4">
             <label htmlFor="cidade" className="form-label">
-              Cidade
+              Cidade <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -262,14 +250,13 @@ const Form = () => {
                 setForm({ ...form, cidade: e.target.value });
               }}
               value={form.cidade}
-              required
             />
             <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
           <div className="col-md-3">
             <label htmlFor="estado" className="form-label">
-              Estado
+              Estado <span className="obrigatorio">*</span>
             </label>
             <input
               type="text"
@@ -278,7 +265,6 @@ const Form = () => {
                 setForm({ ...form, estado: e.target.value });
               }}
               value={form.estado}
-              required
             />
             <div className="invalid-feedback">Selecionar uma opção.</div>
           </div>

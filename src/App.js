@@ -1,8 +1,14 @@
 import React from "react";
-import Form from "./components/Form";
+import Container from "./components/Container";
+import Footer from "./components/Footer";
 
 function App() {
-  return <Form></Form>;
+  return (
+    <>
+      <Container></Container>
+      <Footer></Footer>
+    </>
+  );
 }
 
 export default App;
