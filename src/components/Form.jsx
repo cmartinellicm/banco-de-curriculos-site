@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Form() {
+  const createUser = async (user) => {
+    const newUser = await axios.post("https://gamaacademy-jobsnet.herokuapp.com/register", form);
+  };
+
   const [form, setForm] = useState({
     nome: "",
     cpf: "",
@@ -19,19 +24,23 @@ function Form() {
     estado: "",
   });
 
+  useEffect(() => {
+    console.log(form);
+  }, [form]);
+
   return (
     <>
-      <form id="cadastro" class="needs-validation" novalidate>
-        <div class="row g-3">
-          <h4 class="mb-3">Dados Pessoais</h4>
+      <form id="cadastro" className="needs-validation">
+        <div className="row g-3">
+          <h4 className="mb-3">Dados Pessoais</h4>
 
-          <div class="col-12">
-            <label for="nome" class="form-label">
+          <div className="col-12">
+            <label htmlFor="nome" className="form-label">
               Nome Completo *
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, nome: e.target.value });
               }}
@@ -40,13 +49,13 @@ function Form() {
             />
           </div>
 
-          <div class="col-sm-6">
-            <label for="cpf" class="form-label">
+          <div className="col-sm-6">
+            <label htmlFor="cpf" className="form-label">
               CPF *
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, cpf: e.target.value });
               }}
@@ -55,13 +64,13 @@ function Form() {
             />
           </div>
 
-          <div class="col-12">
-            <label for="email" class="form-label">
+          <div className="col-12">
+            <label htmlFor="email" className="form-label">
               Email
             </label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, email: e.target.value });
               }}
@@ -69,13 +78,13 @@ function Form() {
             />
           </div>
 
-          <div class="col-12">
-            <label for="cargo" class="form-label">
+          <div className="col-12">
+            <label htmlFor="cargo" className="form-label">
               Cargo Pretendido
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, cargo: e.target.value });
               }}
@@ -83,13 +92,13 @@ function Form() {
             />
           </div>
 
-          <div class="col-sm-6">
-            <label for="dataNascimento" class="form-label">
+          <div className="col-sm-6">
+            <label htmlFor="dataNascimento" className="form-label">
               Data de Nascimento
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, dataNascimento: e.target.value });
               }}
@@ -98,20 +107,20 @@ function Form() {
             />
           </div>
 
-          <div class="col-md-6">
-            <label for="estadoCivil" class="form-label">
+          <div className="col-md-6">
+            <label htmlFor="estadoCivil" className="form-label">
               Estado Civil
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, estadoCivil: e.target.value });
               }}
               value={form.estadoCivil}
               required
             />
-            {/* <select class="form-select" id="estadoCivil" required>
+            {/* <select className="form-select" id="estadoCivil" required>
               <option value="">Selecionar...</option>
               <option>Solteiro(a)</option>
               <option>Casado(a)</option>
@@ -120,100 +129,100 @@ function Form() {
             </select> */}
           </div>
 
-          <div class="col-md-6">
-            <label for="sexo" class="form-label">
+          <div className="col-md-6">
+            <label htmlFor="sexo" className="form-label">
               Sexo
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, sexo: e.target.value });
               }}
               value={form.sexo}
               required
             />
-            {/* <select class="form-select" id="sexo" required>
+            {/* <select className="form-select" id="sexo" required>
               <option value="">Selecionar...</option>
               <option>Feminino</option>
               <option>Masculino</option>
             </select> */}
           </div>
 
-          <div class="col-sm-6">
-            <label for="telefone1" class="form-label">
+          <div className="col-sm-6">
+            <label htmlFor="telefone1" className="form-label">
               Telefone 1
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, telefone1: e.target.value });
               }}
               value={form.telefone1}
               required
             />
-            <div class="invalid-feedback">Campo obrigatório.</div>
+            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
-          <div class="col-sm-6">
-            <label for="telefone2" class="form-label">
+          <div className="col-sm-6">
+            <label htmlFor="telefone2" className="form-label">
               Telefone 2
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, telefone2: e.target.value });
               }}
               value={form.telefone2}
             />
-            <div class="invalid-feedback">Favor inserir um telefone válido.</div>
+            <div className="invalid-feedback">Favor inserir um telefone válido.</div>
           </div>
 
-          <hr class="my-4" />
+          <hr className="my-4" />
 
-          <h4 class="mb-3">Endereço</h4>
+          <h4 className="mb-3">Endereço</h4>
 
-          <div class="col-md-3">
-            <label for="cep" class="form-label">
+          <div className="col-md-3">
+            <label htmlFor="cep" className="form-label">
               CEP
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, cep: e.target.value });
               }}
               value={form.cep}
               required
             />
-            <div class="invalid-feedback">Campo obrigatório.</div>
+            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
-          <div class="col-10">
-            <label for="logradouro" class="form-label">
+          <div className="col-10">
+            <label htmlFor="logradouro" className="form-label">
               Logradouro
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, logradouro: e.target.value });
               }}
               value={form.logradouro}
               required
             />
-            <div class="invalid-feedback">Campo obrigatório.</div>
+            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
-          <div class="col-2">
-            <label for="numero" class="form-label">
+          <div className="col-2">
+            <label htmlFor="numero" className="form-label">
               Número
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, numero: e.target.value });
               }}
@@ -222,13 +231,13 @@ function Form() {
             />
           </div>
 
-          <div class="col-md-5">
-            <label for="bairro" class="form-label">
+          <div className="col-md-5">
+            <label htmlFor="bairro" className="form-label">
               Bairro
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, bairro: e.target.value });
               }}
@@ -237,42 +246,42 @@ function Form() {
             />
           </div>
 
-          <div class="col-md-4">
-            <label for="cidade" class="form-label">
+          <div className="col-md-4">
+            <label htmlFor="cidade" className="form-label">
               Cidade
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, cidade: e.target.value });
               }}
               value={form.cidade}
               required
             />
-            <div class="invalid-feedback">Campo obrigatório.</div>
+            <div className="invalid-feedback">Campo obrigatório.</div>
           </div>
 
-          <div class="col-md-3">
-            <label for="estado" class="form-label">
+          <div className="col-md-3">
+            <label htmlFor="estado" className="form-label">
               Estado
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               onChange={(e) => {
                 setForm({ ...form, estado: e.target.value });
               }}
               value={form.estado}
               required
             />
-            <div class="invalid-feedback">Selecionar uma opção.</div>
+            <div className="invalid-feedback">Selecionar uma opção.</div>
           </div>
         </div>
 
-        <hr class="my-4" />
+        <hr className="my-4" />
 
-        <button class="w-100 btn btn-primary btn-lg" type="button" onclick="newUser()">
+        <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => createUser()}>
           Cadastrar
         </button>
       </form>
