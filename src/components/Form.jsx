@@ -216,12 +216,9 @@ const Form = () => {
                 setForm({ ...form, cep: e.target.value });
               }}
               value={form.cep}
+              onBlur={() => consultarCep()}
             />
           </div>
-
-          <button className="w-100 btn btn-outline-secondary" type="button" onClick={() => consultarCep()}>
-            Consultar CEP
-          </button>
 
           <div className="col-10">
             <label htmlFor="logradouro" className="form-label">
@@ -291,11 +288,11 @@ const Form = () => {
               }}
               value={form.estado}
             />
-            <div className="invalid-feedback">Selecionar uma opção.</div>
           </div>
         </div>
 
         <hr className="my-4" />
+        <p className="obrigatorio">* Campos obrigatórios</p>
 
         <button className="w-100 btn btn-primary btn-lg" type="button" onClick={() => createUser()}>
           Cadastrar
