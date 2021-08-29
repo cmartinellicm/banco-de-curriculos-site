@@ -15,6 +15,7 @@ const Form = () => {
       .post("https://gamaacademy-jobsnet.herokuapp.com/register", form)
       .then(function (response) {
         alert("Usuário cadastrado com sucesso!");
+        setForm({ nome: "", cpf: "", email: "", cargo: "", dataNascimento: "", estadoCivil: "", sexo: "", telefone1: "", telefone2: "", cep: "", logradouro: "", numero: "", bairro: "", cidade: "", estado: "" });
       })
       .catch(function (error) {
         if (error.response.status === 500) {
