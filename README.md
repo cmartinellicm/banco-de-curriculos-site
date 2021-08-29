@@ -34,5 +34,5 @@ Projeto desenvolvido como parte do treinamento online Start Tech da [Gama Academ
 
 - URL da Landing Page: https://gamaacademy-jobsnet-site.herokuapp.com/
 - Documentação dos recursos Web Services REST: https://gamaacademy-jobsnet.herokuapp.com/docs/
-- Repositório no GitHub do frontend: 
+- Repositório no GitHub do frontend: https://github.com/cmartinellicm/banco-de-curriculos-site.git
 - Repositório no GitHub do backend: https://github.com/cmartinellicm/banco-de-curriculos
