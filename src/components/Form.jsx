@@ -17,7 +17,11 @@ const Form = () => {
         alert("Usuário cadastrado com sucesso!");
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response.status === 500) {
+          alert("Não foi possível cadastrar no momento.");
+        } else {
+          alert(error.response.data);
+        }
       });
   };
 
@@ -122,14 +126,6 @@ const Form = () => {
             <label htmlFor="estadoCivil" className="form-label">
               Estado Civil <span className="obrigatorio">*</span>
             </label>
-            {/* <input
-              type="text"
-              className="form-control"
-              onChange={(e) => {
-                setForm({ ...form, estadoCivil: e.target.value });
-              }}
-              value={form.estadoCivil}
-            /> */}
             <select
               className="form-select"
               value={form.estadoCivil}
@@ -149,14 +145,6 @@ const Form = () => {
             <label htmlFor="sexo" className="form-label">
               Sexo <span className="obrigatorio">*</span>
             </label>
-            {/* <input
-              type="text"
-              className="form-control"
-              onChange={(e) => {
-                setForm({ ...form, sexo: e.target.value });
-              }}
-              value={form.sexo}
-            /> */}
             <select
               className="form-select"
               value={form.sexo}
