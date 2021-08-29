@@ -1,16 +1,24 @@
 import { useState } from "react";
 import axios from "axios";
+import InputMask from "react-input-mask";
 
 const Form = () => {
   // Buscar CEP via API externa - ViaCEP
   const consultarCep = async () => {
     const endereco = await axios.get(`https://viacep.com.br/ws/${form.cep}/json/`);
-    console.log(endereco.data);
     setForm({ ...form, logradouro: endereco.data.logradouro, bairro: endereco.data.bairro, cidade: endereco.data.localidade, estado: endereco.data.uf });
   };
 
-  const createUser = async (user) => {
-    const newUser = await axios.post("https://gamaacademy-jobsnet.herokuapp.com/register", form);
+  // Enviar dados do usuário para a API cadastrar no DB
+  const createUser = async () => {
+    axios
+      .post("https://gamaacademy-jobsnet.herokuapp.com/register", form)
+      .then(function (response) {
+        alert("Usuário cadastrado com sucesso!");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const [form, setForm] = useState({
@@ -55,7 +63,8 @@ const Form = () => {
             <label htmlFor="cpf" className="form-label">
               CPF <span className="obrigatorio">*</span>
             </label>
-            <input
+            <InputMask
+              mask="999.999.999-99"
               type="text"
               size="11"
               className="form-control"
@@ -98,7 +107,8 @@ const Form = () => {
             <label htmlFor="dataNascimento" className="form-label">
               Data de Nascimento <span className="obrigatorio">*</span>
             </label>
-            <input
+            <InputMask
+              mask="99/99/9999"
               type="text"
               className="form-control"
               onChange={(e) => {
@@ -112,47 +122,60 @@ const Form = () => {
             <label htmlFor="estadoCivil" className="form-label">
               Estado Civil <span className="obrigatorio">*</span>
             </label>
-            <input
+            {/* <input
               type="text"
               className="form-control"
               onChange={(e) => {
                 setForm({ ...form, estadoCivil: e.target.value });
               }}
               value={form.estadoCivil}
-            />
-            {/* <select className="form-select" id="estadoCivil" required>
+            /> */}
+            <select
+              className="form-select"
+              value={form.estadoCivil}
+              onChange={(e) => {
+                setForm({ ...form, estadoCivil: e.target.value });
+              }}
+            >
               <option value="">Selecionar...</option>
-              <option>Solteiro(a)</option>
-              <option>Casado(a)</option>
-              <option>Divorciado(a)</option>
-              <option>Viúvo(a)</option>
-            </select> */}
+              <option value="solteiro">Solteiro(a)</option>
+              <option value="casado">Casado(a)</option>
+              <option value="divorciado">Divorciado(a)</option>
+              <option value="viuvo">Viúvo(a)</option>
+            </select>
           </div>
 
           <div className="col-sm-4">
             <label htmlFor="sexo" className="form-label">
               Sexo <span className="obrigatorio">*</span>
             </label>
-            <input
+            {/* <input
               type="text"
               className="form-control"
               onChange={(e) => {
                 setForm({ ...form, sexo: e.target.value });
               }}
               value={form.sexo}
-            />
-            {/* <select className="form-select" id="sexo" required>
+            /> */}
+            <select
+              className="form-select"
+              value={form.sexo}
+              onChange={(e) => {
+                setForm({ ...form, sexo: e.target.value });
+              }}
+            >
               <option value="">Selecionar...</option>
-              <option>Feminino</option>
-              <option>Masculino</option>
-            </select> */}
+              <option value="feminino">Feminino</option>
+              <option value="masculino">Masculino</option>
+            </select>
           </div>
 
           <div className="col-sm-6">
             <label htmlFor="telefone1" className="form-label">
-              Telefone 1 <span className="obrigatorio">*</span>
+              Telefone Celular <span className="obrigatorio">*</span>
             </label>
-            <input
+            <InputMask
+              mask="(99)99999-9999"
               type="text"
               className="form-control"
               onChange={(e) => {
@@ -164,9 +187,10 @@ const Form = () => {
 
           <div className="col-sm-6">
             <label htmlFor="telefone2" className="form-label">
-              Telefone 2
+              Telefone Residencial
             </label>
-            <input
+            <InputMask
+              mask="(99)9999-9999"
               type="text"
               className="form-control"
               onChange={(e) => {
@@ -184,7 +208,8 @@ const Form = () => {
             <label htmlFor="cep" className="form-label">
               CEP <span className="obrigatorio">*</span>
             </label>
-            <input
+            <InputMask
+              mask="99999-999"
               type="text"
               className="form-control"
               onChange={(e) => {
